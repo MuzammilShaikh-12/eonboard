@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CalendarCheck2 } from "lucide-react";
 import Link from "next/link";
 
-export default function() {
+export default function OnboardingrouteTwo() {
     return(
         <div className="min-h-screen w-screen flex items-center justify-center">
             <Card>
