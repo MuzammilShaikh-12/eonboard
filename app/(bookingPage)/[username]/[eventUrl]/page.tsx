@@ -47,14 +47,23 @@ async function getData(eventUrl: string, userName: string) {
   return data;
 }
 
-export default async function BookingFormRoute({
-  params,
-  searchParams,
-}: {
-  params: { username: string; eventUrl: string };
-  searchParams: { date?: string; time?: string };
-}) {
-  const data = await getData(params.eventUrl, params.username);
+type Params = Promise<{
+  userParams: { 
+    username: string; 
+    eventUrl: string;
+  };
+  searchParams: { 
+    date?: string; 
+    time?: string;
+  };
+}>;
+
+export default async function BookingFormRoute({params}: {params: Params}) {
+
+  const { searchParams } = await params;
+  const { userParams } = await params;
+
+  const data = await getData(userParams.eventUrl, userParams.username);
   const selectedDate = searchParams.date
     ? new Date(searchParams.date)
     : new Date();
@@ -126,7 +135,7 @@ export default async function BookingFormRoute({
                 value={data.videoCallSoftware}
               />
 
-              <input type="hidden" name="username" value={params.username} />
+              <input type="hidden" name="username" value={userParams.username} />
 
               <input type="hidden" name="eventTypeId" value={data.id} />
               <div className="flex flex-col gap-y-2">
@@ -191,7 +200,7 @@ export default async function BookingFormRoute({
             <TimeTable
               duration={data.duration}
               selectedDate={selectedDate}
-              userName={params.username}
+              userName={userParams.username}
             />
           </CardContent>
         </Card>

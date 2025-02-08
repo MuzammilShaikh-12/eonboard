@@ -4,7 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function DeleteEventType({params} : {params: {eventTypeId: string}}) {
+type Params = Promise<{
+    eventParams: {
+        eventTypeId: string;
+    }
+}>;
+
+export default async function DeleteEventType( {params}: {params: Params} ) {
+
+    const { eventParams } = await params;
+
     return (
         <div className="flex flex-1 items-center justify-center">
             <Card className="max-w-[450px] w-full">
@@ -19,7 +28,7 @@ export default function DeleteEventType({params} : {params: {eventTypeId: string
                         <Link href="/dashboard">Cancel</Link>
                     </Button>
                     <form action={DeleteEventTypeAction}>
-                    <input type="hidden" name="id" value={params.eventTypeId} />
+                    <input type="hidden" name="id" value={eventParams.eventTypeId} />
                     <SubmitButton text="Delete Event" variant="destructive"/>
                     </form>
                 </CardFooter>
