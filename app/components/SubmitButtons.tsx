@@ -2,8 +2,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import GoogleLogo from "@/public/assets/GoogleLogo.png"
-import GitHubLogo from "@/public/assets/GitHubLogo.png"
+import GoogleLogo from "/assets/GoogleLogo.png"
+import GitHubLogo from "/assets/GitHubLogo.png"
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 
