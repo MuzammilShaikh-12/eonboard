@@ -47,25 +47,17 @@ async function getData(eventUrl: string, userName: string) {
   return data;
 }
 
-type Params = Promise<{
-  userParams: { 
-    username: string; 
-    eventUrl: string;
-  };
-  searchParams: { 
-    date?: string; 
-    time?: string;
-  };
-}>;
 
-export default async function BookingFormRoute({params}: {params: Params}) {
+export default async function BookingFormRoute({params, searchParams}: {params: Promise<{ username: string; eventUrl: string }>;
+searchParams: Promise<{ date?: string; time?: string }>;
+}) {
 
-  const { searchParams } = await params;
-  const { userParams } = await params;
+  const { username, eventUrl } = await params;
+  const { date, time } = await searchParams;
 
-  const data = await getData(userParams.eventUrl, userParams.username);
-  const selectedDate = searchParams.date
-    ? new Date(searchParams.date)
+  const data = await getData(eventUrl, username);
+  const selectedDate = date
+    ? new Date(date)
     : new Date();
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -74,7 +66,7 @@ export default async function BookingFormRoute({params}: {params: Params}) {
     month: "long",
   }).format(selectedDate);
 
-  const showForm = !!searchParams.date && !!searchParams.time;
+  const showForm = !!date && !!time;
 
   return (
     <div className="min-h-screen w-screen flex items-center justify-center">
@@ -125,8 +117,8 @@ export default async function BookingFormRoute({params}: {params: Params}) {
               className="flex flex-col gap-y-4"
               action={CreateMeetingAction}
             >
-              <input type="hidden" name="fromTime" value={searchParams.time} />
-              <input type="hidden" name="eventDate" value={searchParams.date} />
+              <input type="hidden" name="fromTime" value={time} />
+              <input type="hidden" name="eventDate" value={date} />
 
               <input type="hidden" name="meetingLength" value={data.duration} />
               <input
@@ -135,7 +127,7 @@ export default async function BookingFormRoute({params}: {params: Params}) {
                 value={data.videoCallSoftware}
               />
 
-              <input type="hidden" name="username" value={userParams.username} />
+              <input type="hidden" name="username" value={username} />
 
               <input type="hidden" name="eventTypeId" value={data.id} />
               <div className="flex flex-col gap-y-2">
@@ -200,7 +192,7 @@ export default async function BookingFormRoute({params}: {params: Params}) {
             <TimeTable
               duration={data.duration}
               selectedDate={selectedDate}
-              userName={userParams.username}
+              userName={username}
             />
           </CardContent>
         </Card>

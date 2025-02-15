@@ -2,11 +2,6 @@ import { EditEventForm } from "@/app/components/EditEventTypeForm";
 import prisma from "@/app/lib/db"
 import { notFound } from "next/navigation"
 
-type Params = Promise<{
-    eventParams: {
-        eventTypeId: string
-    };
-}>;
 
 async function getData(eventTypeId: string) {
     const data = await prisma.eventType.findUnique({
@@ -30,11 +25,13 @@ async function getData(eventTypeId: string) {
     return data;
 }
 
-export default async function EditRoute({params} : {params: Params}) {
+export default async function EditRoute({params} : {params: Promise<{
+    eventTypeId: string
+}>}) {
 
-    const { eventParams } = await params;
+    const { eventTypeId } = await params;
 
-    const data = await getData(eventParams.eventTypeId);
+    const data = await getData(eventTypeId);
     return (
         <EditEventForm id={data.id} title={data.title} description={data.description} duration={data.duration} url={data.url} callProvider={data.videoCallSoftware}/>
     )
