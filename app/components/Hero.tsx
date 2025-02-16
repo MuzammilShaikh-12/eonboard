@@ -21,9 +21,7 @@ export function Hero() {
                 </div>
             </div>
 
-            <div className="relative items-center w-full py-12 mx-auto mt-12">
-                <Image src={EonBoard} alt="EonBoard" className="relative object-cover w-full border rounded-lg shadow-2xl lg:rounded-2xl"/>
-            </div>
+            
         </section>
     )
    

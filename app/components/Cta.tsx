@@ -4,10 +4,10 @@ export function CTA() {
   return (
     <section className="my-20 relative isolate overflow-hidden px-6 py-20 text-center sm:rounded-3xl sm:border sm:shadow-sm">
       <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">
-        Start using CalMarshal now!
+        Start using EonBoard now!
       </h2>
       <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-sm mx-auto">
-        CalMarshal makes it easy for your clients to schedulae a meeting with
+        EonBoard makes it easy for your clients to schedule a meeting with
         your!
       </p>
       <div className="mt-6">

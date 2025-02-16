@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eonboard: Automated Meeting Scheduler
 
-## Getting Started
+> Seamless Google Calendar Integration for Effortless Coordination
 
-First, run the development server:
+
+## ✨  Overview
+
+Eonboard is a full-stack web application that automates meeting scheduling by seamlessly integrating with Google Calendar, streamlining the coordination of appointments and events. It simplifies the scheduling process and minimizing potential errors when managing calendars. Built with TypeScript and Tailwind CSS, Eonboard offers a modern, responsive interface, while Firebase and Nylas provide robust backend support and secure data handling. Together, these technologies deliver an efficient and reliable scheduling solution designed to enhance productivity for professionals and teams alike.
+
+## 🚀 Demo
+
+- Live Demo: [Schedule Meetings Instantly](https://eonboard.vercel.app/)
+
+
+## 🔑 Key Features
+
+- **🔒 Robust OAuth Security**  
+  Secure Google/Github login.
+
+- **📝 Customizable Booking Form**  
+  A flexible form that lets users schedule meetings by providing key details like host information, event descriptions, meeting duration, and availability.
+
+- **📅 One-Click Calendar Sync**  
+  Instantly creates and syncs events for both hosts and guests with Google Calendar.
+
+- **🚀 Dynamic Routing**  
+  Generates user-specific URLs for scheduling pages, enhancing the overall user experience.
+
+- **📊 Powerful Dashboard**  
+  A comprehensive interface that gives users complete control over their schedules—manage meetings, adjust availability, and customize settings.
+
+
+## 🛠️ Tech Stack
+
+### Core Technologies
+- **TypeScript** – Robust static typing for scalable code.
+- **Firebase** – Provides authentication, real-time data, and backend services.
+- **Vercel** – Seamless cloud deployment and hosting.
+
+### Architecture & Tools
+- **Frontend:**  
+  - **Next.js 15** (React & TypeScript) with the App Router for dynamic, server-rendered pages.  
+  - **Tailwind CSS** combined with **Shadcn/UI** for a modern, responsive design.
+- **Backend:**  
+  - **Firebase Authentication** for secure user management and real-time data handling.  
+  - **Nylas API** for advanced email and scheduling integrations.
+  
+- **Development Tools:**  
+  - **ESLint & Prettier** for maintaining code quality and consistency.  
+  - **GitHub Actions** for automated CI/CD workflows.
+
+
+
+# Environment Setup
+
+A guide to set up Eonboard on your local machine.
+
+## Prerequisites
+
+- Node.js v18+
+- A Supabase project
+- OAuth credentials (Google & GitHub)
+- Nylas API access
+- Git
+
+## Setup Steps
+
+### 1. Clone & Setup Repository
+
+```bash
+# Get the project
+git clone https://github.com/MuzammilShaikh-12/eonboard.git
+
+# Move into project directory
+cd eonboard
+
+# Install dependencies
+npm install
+```
+
+### 2. Configure Environment
+
+Create a `.env` file in the root directory:
+
+```env
+# Supabase Configuration
+AUTH_SECRET=your_supabase_secret
+DATABASE_URL=your_supabase_postgres
+DIRECT_URL=your_supabase_postgres_url
+
+# OAuth Credentials
+AUTH_GOOGLE_ID=your_google_client_id
+AUTH_GOOGLE_SECRET=your_google_client_secret
+AUTH_GITHUB_ID=your_github_client_id
+AUTH_GITHUB_SECRET=your_github_client_secret
+
+# Nylas Configuration
+NYLAS_API_SECRET_KEY=your_nylas_api_key
+NYLAS_CLIENT_ID=your_nylas_client_id
+NYLAS_API_URI=your_nylas_api_uri  # US/EU region
+
+# App Settings
+NEXT_PUBLIC_URL=http://localhost:3000
+```
+
+### 3. Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your app should now be running at `http://localhost:3000` 🚀
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification Steps
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Development server running without errors  
+- Landing page loads at localhost:3000  
+- Google/Github OAuth login works  
+- Nylas integration functional
 
-## Learn More
+## Helpful Resources
 
-To learn more about Next.js, take a look at the following resources:
+- [Supabase Setup](https://supabase.com/docs)
+- [Google OAuth Setup](https://developers.google.com/identity/protocols/oauth2)
+- [GitHub OAuth Setup](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps)
+- [Nylas API Docs](https://developer.nylas.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
